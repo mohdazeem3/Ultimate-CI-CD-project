@@ -9,7 +9,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        git branch: 'main', url: 'https://github.com/mohdazeem3/Ultimate-CI-CD-project.git'
+        //git branch: 'main', url: 'https://github.com/mohdazeem3/Ultimate-CI-CD-project.git'
       }
     }
     stage('Build and Test') {
@@ -57,7 +57,6 @@ pipeline {
                     git config user.name "Mohamed Azeem"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
-                    git checkout main
                     git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
